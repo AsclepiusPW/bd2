@@ -1,0 +1,39 @@
+Date : 2023-10-12 18:50:31
+Directory : c:\Users\kingz\Documents\GitHub\bd2\geocrime\src
+Total : 10 files,  211 codes, 2 comments, 36 blanks, all 249 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |          5 |        133 |          2 |         24 |        159 |
+| CSS            |          5 |         78 |          0 |         12 |         90 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                    | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                       |         10 |        211 |          2 |         36 |        249 |
+| . (Files)                                                                               |          4 |         50 |          0 |          9 |         59 |
+| components                                                                              |          6 |        161 |          2 |         27 |        190 |
+| components\Cabecalho                                                                    |          2 |         23 |          0 |          4 |         27 |
+| components\Register                                                                     |          4 |        138 |          2 |         23 |        163 |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                | language       | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\App.css                                | CSS            |         10 |          0 |          1 |         11 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\App.jsx                                | JavaScript JSX |         17 |          0 |          4 |         21 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\components\Cabecalho\Cabecalho.css     | CSS            |         14 |          0 |          2 |         16 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\components\Cabecalho\Header.jsx        | JavaScript JSX |          9 |          0 |          2 |         11 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\components\Register\OcorrenciaForm.css | CSS            |         34 |          0 |          7 |         41 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\components\Register\OcorrenciaForm.jsx | JavaScript JSX |         89 |          2 |         15 |        106 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\components\Register\Register.css       | CSS            |          6 |          0 |          0 |          6 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\components\Register\Register.jsx       | JavaScript JSX |          9 |          0 |          1 |         10 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\index.css                              | CSS            |         14 |          0 |          2 |         16 |
+| c:\Users\kingz\Documents\GitHub\bd2\geocrime\src\main.jsx                               | JavaScript JSX |          9 |          0 |          2 |         11 |
+| Total                                                                                   |                |        211 |          2 |         36 |        249 |
++-----------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

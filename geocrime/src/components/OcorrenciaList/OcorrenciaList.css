@@ -1,0 +1,11 @@
+#OcorrenciaList{
+    background-color: black;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 1vh;
+    margin: 5vh;
+}
+
+#titulo {
+    color: white;
+}
