@@ -1,14 +1,15 @@
 import React from 'react';
+import "./Ocorrencia.css";
 
-const Ocorrencia = ({ ocorrencia }) => {
+
+export const Ocorrencia = ({ nome, descricao, latitude, longitude }) => {
   return (
-    <div className="ocorrencia">
-      <h2>{ocorrencia.nome}</h2>
-      <p>{ocorrencia.descricao}</p>
-      <p>Latitude: {ocorrencia.latitude}</p>
-      <p>Longitude: {ocorrencia.longitude}</p>
+    <div id='ocorrencia'>
+      <p>Nome: {nome}</p>
+      <p>Descrição: {descricao}</p>
+      <p>Latitude: {latitude}</p>
+      <p>Longitude: {longitude}</p>
     </div>
   );
 };
 
-export default Ocorrencia;

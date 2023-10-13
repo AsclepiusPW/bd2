@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './OcorrenciaForm.css';
 
-
-export const OcorrenciaForm = () => {
+export const OcorrenciaForm = ({adicionarOcorrencia}) => {
   const [nomeOcorrencia, setNomeOcorrencia] = useState('');
   const [descricaoOcorrencia, setDescricaoOcorrencia] = useState('');
   const [latitudeOcorrencia, setLatitudeOcorrencia] = useState('');
   const [longitudeOcorrencia, setLongitudeOcorrencia] = useState('');
-  const [ocorrencias, setOcorrencias] = useState([]);
-
+  
 
   useEffect(() => {
     const mapDiv = document.querySelector(".map");
@@ -52,30 +50,32 @@ export const OcorrenciaForm = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+      e.preventDefault();
+        const novaOcorrencia = {
+          nome: nomeOcorrencia,
+          descricao: descricaoOcorrencia,
+          latitude: latitudeOcorrencia,
+          longitude: longitudeOcorrencia,
+        };
+      adicionarOcorrencia(novaOcorrencia);
 
-    const novaOcorrencia = {
-      nome: nomeOcorrencia,
-      descricao: descricaoOcorrencia,
-      latitude: latitudeOcorrencia,
-      longitude: longitudeOcorrencia,
+      setNomeOcorrencia('');
+      setDescricaoOcorrencia('');
+      setLatitudeOcorrencia('');
+      setLongitudeOcorrencia('');
     };
 
-    setOcorrencias([...ocorrencias, novaOcorrencia]);
-
-    setNomeOcorrencia('');
-    setDescricaoOcorrencia('');
-    setLatitudeOcorrencia('');
-    setLongitudeOcorrencia('');
-  };
-
+ 
   return (
+    <>
     <form onSubmit={handleSubmit} id='ocorrenciaForm'>
       <div className="map" style={{ width: '100%', height: '200px' }}></div>
       <div id='nome'>
         <label htmlFor="nomeOcorrencia">Nome da Ocorrência:</label>
         <input
+          required
           type="text"
+          placeholder="Nome"
           id="nomeOcorrencia"
           value={nomeOcorrencia}
           onChange={(e) => setNomeOcorrencia(e.target.value)}
@@ -83,7 +83,10 @@ export const OcorrenciaForm = () => {
       </div>
       <div id='descricao'>
         <label htmlFor="descricaoOcorrencia">Descrição:</label>
-        <textarea
+        <input
+          required
+          type="text"
+          placeholder="Descrição da Ocorrência"
           id="descricaoOcorrencia"
           value={descricaoOcorrencia}
           onChange={(e) => setDescricaoOcorrencia(e.target.value)}
@@ -92,6 +95,7 @@ export const OcorrenciaForm = () => {
       <div id='localOcorrencia'>
       <label htmlFor="latitudeOcorrencia">Latitude:</label>
       <input
+        required
         type="text"
         id="latitudeOcorrencia"
         placeholder="Latitude"
@@ -100,6 +104,7 @@ export const OcorrenciaForm = () => {
       />
       <label htmlFor="longitudeOcorrencia">Longitude:</label>
       <input
+        required
         type="text"
         id="longitudeOcorrencia"
         placeholder="Longitude"
@@ -111,5 +116,7 @@ export const OcorrenciaForm = () => {
         <button type="submit" id='button'>Registrar Ocorrência</button>
       </div>
     </form>
+    
+    </>
   );
 }

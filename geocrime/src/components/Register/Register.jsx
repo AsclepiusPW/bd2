@@ -1,11 +1,11 @@
 import './Register.css'
 import { OcorrenciaForm } from './OcorrenciaForm.jsx'
 
-export const RegisterCard = () => {
+export const RegisterCard = ({adicionarOcorrencia}) => {
     return(
         <div id='registerCard'>
             <h1>Registre sua Ocorrência:</h1>
-            <OcorrenciaForm/>
+            <OcorrenciaForm adicionarOcorrencia={adicionarOcorrencia}/>
         </div>
     )
 }
