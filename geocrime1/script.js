@@ -1,6 +1,6 @@
-
 document.addEventListener('DOMContentLoaded', async function() {
-    const ocorrencias = [];
+    const ocorrenciaList = document.getElementById('OcorrenciaList')
+
     const adicionarOcorrencia = async (ocorrencia) => {
         const options = {
             method: 'POST',
@@ -9,34 +9,72 @@ document.addEventListener('DOMContentLoaded', async function() {
             },
             body: JSON.stringify(ocorrencia)
         }
-        await fetch("http://localhost:3000/pontos", options).then((res)=> {
+        await fetch("http://localhost:3000/pontos", options).then((res) => {
             console.log(res.json());
         });
-        renderOcorrenciaList();
+        await exibirOcorrencias();
     }
-    const renderOcorrenciaList = () => {
-        const ocorrenciaList = document.getElementById('OcorrenciaList');
-        ocorrenciaList.innerHTML = '<h2 id="titulo">Lista de Ocorrências:</h2>';
-        ocorrencias.forEach((ocorrencia, index) => {
-            const uniqueId = `mostradorDeLocal_${index}`;
-            ocorrenciaList.innerHTML += `
-            <div class="ocorrencia">
-                <p>Título: ${ocorrencia.nome}</p>
-                <p>Tipo: ${ocorrencia.descricao}</p>
-                <p>Data e Hora: ${new Date(ocorrencia.dataHora).toLocaleString()}</p>
-                <p>Latitude: ${ocorrencia.latitude}</p>
-                <p>Longitude: ${ocorrencia.longitude}</p>
-                <button id="${uniqueId}" class="mostradorDeLocal">Mostrar Local</button>
-            </div>`;
 
+    const buscarOcorrencias = async () => {
+        const response = await fetch("http://localhost:3000/pontos");
+        const data = await response.json();
+        return data;
+    }
+
+    const deletarOcorrencia = async (ocorrenciaId) => {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+        await fetch(`http://localhost:3000/pontos/${ocorrenciaId}`, options)
+        .then((res) => {
+            console.log(res.json());
+        })
+        .catch((error) => {
+            console.error("erro ao deletar ocorrência:", error);
+        })
+    }
+
+    const exibirOcorrencias = async () => {
+        const ocorrenciasDoBanco = await buscarOcorrencias();
+    
+        const ocorrenciaHTML = ocorrenciasDoBanco.map((ocorrencia, index) => {
+            const uniqueId = `mostradorDeLocal_${index}`;
+            const deleteId = `deletarOcorrencia_${index}`;
+            return `
+                <div class="ocorrencia">
+                    <p>Título: ${ocorrencia.titulo}</p>
+                    <p>Tipo: ${ocorrencia.tipo}</p>
+                    <p>Data e Hora: ${new Date(ocorrencia.dataHora).toLocaleString()}</p>
+                    <p>Latitude: ${ocorrencia.lat}</p>
+                    <p>Longitude: ${ocorrencia.lng}</p>
+                    <button id="${uniqueId}" class="mostradorDeLocal">Mostrar Local</button>
+                    <button id="${deleteId}" class="deletarOcorrencia">Deletar</button>
+                </div>
+            `;
+        });
+    
+        ocorrenciaList.innerHTML += ocorrenciaHTML.join('');
+    
+        ocorrenciasDoBanco.map((ocorrencia, index) => {
+            const uniqueId = `mostradorDeLocal_${index}`;
             const mostrarLocalBtn = document.getElementById(uniqueId);
             mostrarLocalBtn.addEventListener('click', () => {
-                const lat = parseFloat(ocorrencia.latitude);
-                const lng = parseFloat(ocorrencia.longitude);
+                const lat = parseFloat(ocorrencia.lat);
+                const lng = parseFloat(ocorrencia.lng);
                 const position = { lat, lng };
-
+    
                 map.panTo(position);
                 marcador.setPosition(position);
+            });
+
+            const deleteId = `deletarOcorrencia_${index}`
+            const deletarButt = document.getElementById(deleteId);
+            deletarButt.addEventListener('click', async () => {
+                await deletarOcorrencia(ocorrencia.id);
+                await exibirOcorrencias();
             });
         });
     };
@@ -48,8 +86,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         const nomeOcorrencia = document.getElementById('nomeOcorrencia').value;
         const descricaoOcorrencia = document.getElementById('descricaoOcorrencia').value;
         const dataHoraOcorrencia = document.getElementById('dataHoraOcorrencia').value;
-        const latitudeOcorrencia = document.getElementById('latitudeOcorrencia').value;
-        const longitudeOcorrencia = document.getElementById('longitudeOcorrencia').value;
+        const latitudeOcorrencia = parseFloat(document.getElementById('latitudeOcorrencia').value);
+        const longitudeOcorrencia = parseFloat(document.getElementById('longitudeOcorrencia').value);
 
         const novaOcorrencia = {
             titulo: nomeOcorrencia,
@@ -102,5 +140,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
         iniciarMapa();
+        await exibirOcorrencias();
     }
 });

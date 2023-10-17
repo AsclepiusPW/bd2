@@ -21,17 +21,22 @@
 .ocorrencia {
     border: 2px solid white;
     font-size: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 /* OcorrenciaList.css */
 #OcorrenciaList {
     background-color: black;
-    height: fit-content;
     width: fit-content;
     border-radius: 1vh;
-    margin: 5vh;
+    margin: 5vh auto;
     color: white;
+    padding: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
 }
+
 
 #titulo {
     color: white;
@@ -88,6 +93,8 @@
     height: fit-content;
     width: fit-content;
     border-radius: 1vh;
+    margin: 5vh auto;
+    padding: 20px;
 }
 
 h1 {

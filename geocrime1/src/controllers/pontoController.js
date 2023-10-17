@@ -1,4 +1,4 @@
-const { createPonto, getPontos } = require("../services/pontoService")
+const { createPonto, getPontos, deletePonto } = require("../services/pontoService")
 
 const store = async (req, res) => {
     const ponto = req.body
@@ -11,4 +11,10 @@ const index = async (req, res) => {
     return res.send(pontos);
 }
 
-module.exports = {store, index}
+const apagar = async(req, res) => {
+    const pontoId = req.params.id;
+    const result = await deletePonto(pontoId);
+    return res.result;
+}
+
+module.exports = {store, index, apagar}
