@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         })
     }
 
+
     const exibirOcorrencias = async () => {
         const ocorrenciasDoBanco = await buscarOcorrencias();
     
