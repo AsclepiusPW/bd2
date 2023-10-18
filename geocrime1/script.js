@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         await fetch(`http://localhost:3000/pontos/${ocorrenciaId}`, options)
         .then((res) => {
             console.log(res.json());
+            exibirOcorrencias();
         })
         .catch((error) => {
             console.error("erro ao deletar ocorrência:", error);
